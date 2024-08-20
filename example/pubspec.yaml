@@ -10,7 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2
-  http_certificate_pinning:
+  public_key_pinning:
     path: ../
 
 dev_dependencies:

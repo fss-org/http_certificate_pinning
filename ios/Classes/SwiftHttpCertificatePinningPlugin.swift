@@ -113,12 +113,24 @@ public class SwiftHttpCertificatePinningPlugin: NSObject, FlutterPlugin {
             SecTrustEvaluate(serverTrust, &result)
             let isServerTrusted: Bool = (result == .unspecified || result == .proceed)
 
-            let serverCertData = SecCertificateCopyData(certificate) as Data
-            var serverCertSha = serverCertData.sha256().toHexString()
+            guard let publicKey = SecCertificateCopyKey(certificate),
+                  let publicKeyData = SecKeyCopyExternalRepresentation(publicKey, nil) as Data? else {
+                flutterResult(
+                    FlutterError(
+                        code: "ERROR CERT",
+                        message: "Invalid Public Key",
+                        details: nil
+                    )
+                )
+                return (.cancelAuthenticationChallenge, nil)
+            }
+
+            var publicKeySha = publicKeyData.sha256().toHexString()
 
             if(type == "SHA1"){
-                serverCertSha = serverCertData.sha1().toHexString()
+                publicKeySha = publicKeyData.sha1().toHexString()
             }
+
 
             var isSecure = false
             if var fp = self.fingerprints {
@@ -127,7 +139,7 @@ public class SwiftHttpCertificatePinningPlugin: NSObject, FlutterPlugin {
             }
 
                 isSecure = fp.contains(where: { (value) -> Bool in
-                    value.caseInsensitiveCompare(serverCertSha) == .orderedSame
+                    value.caseInsensitiveCompare(publicKeySha) == .orderedSame
                 })
             }
 

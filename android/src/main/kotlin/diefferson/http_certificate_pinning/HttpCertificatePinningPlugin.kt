@@ -119,7 +119,7 @@ public class HttpCertificatePinningPlugin : FlutterPlugin, MethodCallHandler {
     httpClient.connect()
 
     val cert: Certificate = httpClient.serverCertificates[0] as Certificate
-    return this.hashString(type, cert.encoded)
+    return this.hashString(type, cert.publicKey.encoded)
   }
 
   private fun hashString(type: String, input: ByteArray) =
