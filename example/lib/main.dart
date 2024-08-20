@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:http_certificate_pinning/http_certificate_pinning.dart';
+import 'package:http_certificate_pinning/public_key_pinning.dart';
 
 void main() => runApp(const MyApp());
 

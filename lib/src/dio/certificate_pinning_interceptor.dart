@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
-import 'package:http_certificate_pinning/http_certificate_pinning.dart';
+import 'package:public_key_pinning/public_key_pinning.dart';
 
 class CertificatePinningInterceptor extends Interceptor {
   final List<String> _allowedSHAFingerprints;
