@@ -3,7 +3,7 @@
 # Run `pod lib lint http_certificate_pinning.podspec' to validate before publishing.
 #
 Pod::Spec.new do |s|
-  s.name             = 'http_certificate_pinning'
+  s.name             = 'public_key_pinning'
   s.version          = '1.0.3'
   s.summary          = 'Https Certificate pinning for Flutter'
   s.description      = <<-DESC
