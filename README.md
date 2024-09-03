@@ -1,8 +1,8 @@
-# Http Certificate Pinning
+# HTTP Public Key Pinning
 
-Https Certificate pinning for Flutter
+HTTP Public Key pinning for Flutter
 
-This project ins based on [ssl_pinning_plugin](https://github.com/macif-dev/ssl_pinning_plugin) 
+This project is based on [ssl_pinning_plugin](https://github.com/macif-dev/ssl_pinning_plugin) and [http_certificate_pinning](https://github.com/KranthiBandla/http_certificate_pinning)
 
 Any help is appreciated! Comment, suggestions, issues, PR's!
 
@@ -13,7 +13,8 @@ In your flutter or dart project add the dependency:
 ```yml
 dependencies:
   ...
-  http_certificate_pinning: 2.1.3
+  public_key_pinning:
+    git: https://github.com/fss-org/http_certificate_pinning.git
 ```
 
 ## Get Certificate FingerPrint
@@ -34,7 +35,7 @@ The Result is like:
 ### Using Dio
 
 ```dart
-import 'package:http_certificate_pinning/http_certificate_pinning.dart';
+import 'package:public_key_pinning/public_key_pinning.dart';
   
   // Add CertificatePinningInterceptor in dio Client
   Dio getClient(String baseUrl, List<String> allowedSHAFingerprints){
@@ -51,7 +52,7 @@ import 'package:http_certificate_pinning/http_certificate_pinning.dart';
 ### Using Http
 
 ```dart
-import 'package:http_certificate_pinning/secure_http_client.dart';
+import 'package:public_key_pinning/public_key_pinning.dart';
   
   // Uses SecureHttpClient to make requests
   SecureHttpClient getClient(List<String> allowedSHAFingerprints){
@@ -68,7 +69,7 @@ import 'package:http_certificate_pinning/secure_http_client.dart';
 ### Other Client
 
 ```dart
-import 'package:http_certificate_pinning/http_certificate_pinning.dart';
+import 'package:public_key_pinning/public_key_pinning.dart';
   
 Future myCustomImplementation(String url, Map<String,String> headers, List<String> allowedSHAFingerprints) async {
   try{
